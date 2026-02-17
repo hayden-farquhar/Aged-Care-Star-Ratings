@@ -281,7 +281,7 @@ p_subcat <- ggplot(subcat_traj, aes(x = quarter_date, y = mean_rating,
     axis.text.x = element_text(angle = 45, hjust = 1),
     legend.position = "bottom"
   ) +
-  coord_cartesian(ylim = c(2.5, 4.5))
+  coord_cartesian(ylim = c(2.0, 5.0))
 
 ggsave(file.path(dir_figs, "trajectory_subcategories.png"), p_subcat,
        width = 10, height = 6, dpi = 300, device = ragg::agg_png)

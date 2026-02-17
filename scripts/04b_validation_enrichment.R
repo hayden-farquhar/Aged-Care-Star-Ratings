@@ -26,6 +26,7 @@
 library(dplyr, warn.conflicts = FALSE)
 library(tidyr)
 library(ggplot2)
+library(hexbin)
 library(readr)
 library(lmerTest)
 library(broom.mixed)
@@ -81,11 +82,12 @@ dat_diag <- dat %>%
     std_resid    = resid(m3, scaled = TRUE)
   )
 
-# A1: Residuals vs fitted
+# A1: Residuals vs fitted (hex-bin density for large ordinal dataset)
 p_rvf <- ggplot(dat_diag, aes(x = fitted_vals, y = residuals)) +
-  geom_point(alpha = 0.05, size = 0.5) +
-  geom_hline(yintercept = 0, colour = "red", linetype = "dashed") +
-  geom_smooth(method = "loess", se = FALSE, colour = "blue", linewidth = 0.8) +
+  geom_hex(bins = 60) +
+  scale_fill_viridis_c(option = "inferno", trans = "log10", name = "Count") +
+  geom_hline(yintercept = 0, colour = "red", linetype = "dashed", linewidth = 0.8) +
+  geom_smooth(method = "loess", se = FALSE, colour = "dodgerblue", linewidth = 1) +
   labs(title = "Residuals vs Fitted Values",
        subtitle = "Overall Star Rating mixed model (M3)",
        x = "Fitted Values", y = "Residuals") +
