@@ -1,0 +1,106 @@
+MANUSCRIPT METADATA
+===================
+
+Title:
+  Geographic Equity in Aged Care Quality: Spatial and Longitudinal
+  Analysis of Australia's Star Ratings System
+
+Author:
+  Hayden Farquhar
+  Independent Researcher, Finley, NSW 2713, Australia
+  ORCID: 0009-0002-6226-440X
+  Email: hayden.farquhar@icloud.com
+
+Keywords:
+  aged care, Star Ratings, quality measurement, spatial analysis,
+  health equity, Australia
+
+Abstract:
+  Objectives: To examine geographic variation, temporal trajectories,
+  and equity dimensions of quality in Australian residential aged care
+  using the Star Ratings system introduced in late 2022.
+
+  Design: Repeated cross-sectional and longitudinal panel analysis of
+  publicly available administrative data, reported in accordance with
+  the STROBE guidelines.
+
+  Setting: All rated residential aged care facilities in Australia
+  (census of the rated population, not a sample).
+
+  Participants: 3,002 unique facilities observed across 11 quarterly
+  Star Ratings extracts (May 2023 to October 2025), yielding 28,708
+  facility-quarter records.
+
+  Main outcome measures: Overall Star Rating (1-5 stars) and four
+  sub-category ratings (residents' experience, compliance, staffing,
+  quality measures). Secondary outcomes: spatial clustering (Global and
+  Local Moran's I), quality trajectories by provider type (mixed-effects
+  models), and quality desert identification (distance to nearest
+  adequately rated facility).
+
+  Results: Mean overall rating improved from 3.38 to 3.87 stars over 11
+  quarters, with improvement decelerating over time (quadratic term
+  p < 0.001). In random-slopes mixed models, for-profit facilities
+  rated 0.10 stars lower than not-for-profit (p < 0.001) and government
+  facilities rated 0.43 stars higher (p < 0.001); these associations
+  were robust to adjustment for facility size, state, remoteness, and
+  area-level disadvantage. For-profit ownership was independently
+  associated with persistent low performance (OR 2.75; 95% CI
+  1.13-6.70). Quality ratings clustered spatially (Global Moran's I =
+  0.24, p < 0.001), with 17 statistically significant low-quality
+  clusters identified in Western Australia and South Australia. Eleven
+  SA3 areas were classified as quality deserts (>50 km to a 3+ star
+  facility), overwhelmingly in remote locations. Area-level
+  socioeconomic disadvantage did not predict quality desert status after
+  adjusting for remoteness (p = 0.60).
+
+  Conclusions: Australia's Star Ratings system is associated with
+  substantial sector-wide quality improvement, but a persistent
+  for-profit quality gap and geographic clustering of low quality
+  present opportunities for targeted regulatory intervention.
+
+Data Availability:
+  All Star Ratings data are publicly available from the GEN Aged Care
+  Data website (https://www.gen-agedcaredata.gov.au/). ABS reference
+  data are available from the Australian Bureau of Statistics
+  (https://www.abs.gov.au/). US CMS Five-Star data are available from
+  data.cms.gov (dataset ID: 4pq5-n9py). Analysis code is available at
+  https://github.com/hayden-farquhar/Aged-Care-Star-Ratings.
+
+Ethics:
+  Ethics approval was not required. All data are publicly available
+  and contain no individual-level information.
+
+Funding:
+  This research received no specific grant from any funding agency in
+  the public, commercial, or not-for-profit sectors.
+
+Conflicts of Interest:
+  None declared.
+
+AI Disclosure:
+  AI-assisted tools were used during manuscript preparation for coding
+  assistance and editorial review. The author takes full responsibility
+  for the content and integrity of the work.
+
+STROBE Compliance:
+  This study is reported in accordance with the STROBE guidelines for
+  observational studies. A completed checklist is provided in the
+  Supplementary Materials.
+
+Reporting Guidelines:
+  STROBE (Strengthening the Reporting of Observational Studies in
+  Epidemiology)
+
+Study Registration:
+  Not applicable (observational study of publicly available data).
+
+Date of Analysis:
+  February 2026
+
+Data Period:
+  May 2023 to October 2025 (11 quarterly extracts)
+
+Software:
+  R version 4.5
+  Key packages: lmerTest, ordinal, spdep, GWmodel, sf, tmap, ggplot2
