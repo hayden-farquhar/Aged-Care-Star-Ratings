@@ -167,7 +167,7 @@ After running all scripts, the following key outputs are produced:
 
 If you use this code, please cite the manuscript:
 
-> Farquhar H. Geographic equity in aged care quality: spatial and longitudinal analysis of Australia's Star Ratings system. *Australian Health Review.* 2026. [DOI to be added]
+> Farquhar H. Geographic equity in aged care quality: spatial and longitudinal analysis of Australia's Star Ratings system. *medRxiv* [Preprint]. 2026. [DOI to be added]
 
 ## License
 
