@@ -1,8 +1,10 @@
-# Data files (must be downloaded by user — see README)
+# Raw inputs and large reference layers (download per README)
 data/raw/
 data/reference/
 data/spatial/
-data/processed/
+
+# data/processed/ IS tracked: the derived analytic datasets are bundled
+# so scripts 03+ can be run without re-downloading and re-cleaning raw extracts.
 
 # R session files
 .Rhistory

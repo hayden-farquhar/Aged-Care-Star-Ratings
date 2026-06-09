@@ -1,6 +1,6 @@
-# Replication Code: Geographic Equity in Residential Aged Care Quality
+# Replication Code and Data: Geographic Equity in Residential Aged Care Quality
 
-Analysis code for: **"Geographic Equity in Residential Aged Care Quality: Spatial and Longitudinal Analysis of Australia's Star Ratings System"**
+Analysis code and derived analytic datasets for: **"Geographic Equity in Residential Aged Care Quality: Spatial and Longitudinal Analysis of Australia's Star Ratings System"**
 
 **Author:** Hayden Farquhar
 **Contact:** hayden.farquhar@icloud.com
@@ -40,6 +40,8 @@ install.packages(c(
 ## Data Sources
 
 All data are publicly available. The scripts download most files automatically; one file requires manual download.
+
+The derived analytic datasets are also bundled in `data/processed/` (see [Bundled datasets](#bundled-datasets) below), so the spatial, longitudinal, equity, and table-building steps (scripts `03` onward) can be run directly without first re-downloading and re-cleaning the raw extracts.
 
 | Source | Description | Access |
 |--------|-------------|--------|
@@ -82,20 +84,34 @@ repository/
 │   ├── 06_international_comparison.R  # US CMS Five-Star comparison
 │   ├── 07_manuscript_tables.R         # Build Tables 1-3 (CSV)
 │   └── 07b_table1_subcategories.R     # Table 1 sub-category rows by provider type
-├── data/                      # Created by scripts (not tracked in git)
-│   ├── raw/                   # Downloaded source files
-│   ├── reference/             # ABS reference files
-│   ├── spatial/               # SA3 shapefiles
-│   └── processed/             # Cleaned panel dataset
+├── data/
+│   ├── raw/                   # Downloaded source files (not tracked; per Data Sources)
+│   ├── reference/             # ABS reference files (not tracked)
+│   ├── spatial/               # SA3 shapefiles (not tracked)
+│   └── processed/             # Derived analytic datasets (TRACKED; see Bundled datasets)
 └── outputs/                   # Created by scripts (not tracked in git)
     ├── tables/                # Results tables (CSV)
     ├── figures/               # Plots (PNG)
     └── maps/                  # Choropleth maps (PNG)
 ```
 
+## Bundled datasets
+
+The `data/processed/` directory ships the derived analytic datasets used by the analysis scripts:
+
+| File | Records | Description |
+|------|---------|-------------|
+| `star_ratings_panel.rds` | 28,708 facility-quarter | Cleaned longitudinal panel: facility-level Star Ratings (overall + four sub-categories) across 11 quarters, linked to SA3, IRSD, and remoteness |
+| `sa3_reference.rds` | 338 SA3 | SA3 reference table: IRSD score/quintile/decile, remoteness, and population by age band |
+| `suburb_sa3_lookup.rds` | 15,200 suburb | Suburb-to-SA3 crosswalk used for facility geolocation |
+
+All three are derived solely from the public sources listed under [Data Sources](#data-sources). They are facility- and area-level only and contain no individual-level information. They are provided so the analysis can be reproduced without re-running the download and cleaning steps; to rebuild them from scratch instead, run scripts `01` and `02`.
+
 ## Running the Analysis
 
 Scripts are numbered and should be run sequentially. All scripts assume the working directory is the repository root.
+
+You can either (a) reproduce the full pipeline from raw data by starting at Step 1, or (b) use the bundled datasets in `data/processed/` and start directly at Step 3.
 
 ```r
 setwd("/path/to/this/repository")
