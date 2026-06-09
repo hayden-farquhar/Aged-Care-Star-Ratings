@@ -501,7 +501,9 @@ m_lisa <- tm_shape(shp, crs = 3577) +
           fill.legend = tm_legend(title = "LISA Cluster")) +
   tm_borders(col = "grey60", lwd = 0.3) +
   tm_title("Local Indicators of Spatial Association: Star Rating Clusters") +
-  tm_layout(frame = FALSE)
+  tm_layout(frame = FALSE,
+            legend.position = tm_pos_in("left", "bottom"),
+            legend.frame = FALSE)
 
 tmap_save(m_lisa, file.path(dir_maps, "map_lisa_clusters.png"),
           device = ragg::agg_png, width = 10, height = 8, dpi = 300)

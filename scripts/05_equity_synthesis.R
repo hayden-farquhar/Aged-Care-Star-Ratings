@@ -353,7 +353,9 @@ map_overlay <- tm_shape(shp_desert_overlay) +
   ) +
   tm_borders(col = "grey70", lwd = 0.2) +
   tm_title("Quality Deserts and Socioeconomic Disadvantage") +
-  tm_layout(frame = FALSE)
+  tm_layout(frame = FALSE,
+            legend.position = tm_pos_in("left", "bottom"),
+            legend.frame = FALSE)
 
 save_map(map_overlay, file.path(dir_maps, "map_quality_desert_disadvantage.png"),
          width = 10, height = 8, dpi = 300)

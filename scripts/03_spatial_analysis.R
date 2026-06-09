@@ -142,12 +142,14 @@ map_overall <- tm_shape(shp, projection = 3577) +
     fill.legend = tm_legend(title = "Mean Star Rating")
   ) +
   tm_borders(col = "grey60", lwd = 0.3) +
-  tm_title(glue("Overall Star Rating by SA3 — {latest_label}")) +
-  tm_layout(frame = FALSE)
+  tm_title(glue("Overall Star Rating by SA3, {latest_label}")) +
+  tm_layout(frame = FALSE,
+            legend.position = tm_pos_in("left", "bottom"),
+            legend.frame = FALSE)
 
 tmap_save(map_overall,
           filename = file.path(dir_maps, "map_overall_star_rating.png"),
-          width = 10, height = 8, dpi = 300)
+          device = ragg::agg_png, width = 10, height = 8, dpi = 300)
 tmap_save(map_overall,
           filename = file.path(dir_maps, "map_overall_star_rating.pdf"),
           width = 10, height = 8)
