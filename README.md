@@ -1,6 +1,6 @@
-# Replication Code: Geographic Equity in Aged Care Quality
+# Replication Code: Geographic Equity in Residential Aged Care Quality
 
-Analysis code for: **"Geographic Equity in Aged Care Quality: Spatial and Longitudinal Analysis of Australia's Star Ratings System"**
+Analysis code for: **"Geographic Equity in Residential Aged Care Quality: Spatial and Longitudinal Analysis of Australia's Star Ratings System"**
 
 **Author:** Hayden Farquhar
 **Contact:** hayden.farquhar@icloud.com
@@ -79,7 +79,9 @@ repository/
 │   ├── 04b_supplement.R       # Supplementary table generation
 │   ├── 04c_final_analyses.R   # Interaction tests, persistent low performers
 │   ├── 05_equity_synthesis.R  # Quality deserts, distance analysis
-│   └── 06_international_comparison.R  # US CMS Five-Star comparison
+│   ├── 06_international_comparison.R  # US CMS Five-Star comparison
+│   ├── 07_manuscript_tables.R         # Build Tables 1-3 (CSV)
+│   └── 07b_table1_subcategories.R     # Table 1 sub-category rows by provider type
 ├── data/                      # Created by scripts (not tracked in git)
 │   ├── raw/                   # Downloaded source files
 │   ├── reference/             # ABS reference files
@@ -139,6 +141,13 @@ source("scripts/06_international_comparison.R")
 ```
 Downloads and processes US CMS Five-Star data, computes descriptive comparison statistics, and generates comparison figures.
 
+### Step 7: Manuscript tables
+```r
+source("scripts/07_manuscript_tables.R")
+source("scripts/07b_table1_subcategories.R")
+```
+Assembles the publication tables from the analysis outputs: Table 1 (facility characteristics by provider type), Table 2 (random-slopes mixed model), and Table 3 (international comparison). `07b` adds the four sub-category rating rows (residents' experience, compliance, staffing, quality measures) to Table 1 for the latest quarter.
+
 ## Key Output Files
 
 After running all scripts, the following key outputs are produced:
@@ -147,14 +156,18 @@ After running all scripts, the following key outputs are produced:
 |------|-------------|
 | `data/processed/star_ratings_panel.rds` | Longitudinal panel (28,708 facility-quarter records) |
 | `data/processed/sa3_reference.rds` | SA3 reference table with IRSD, remoteness, population |
-| `outputs/tables/model_comparison_table.csv` | Mixed-effects model results |
+| `outputs/tables/mixed_model_comparison.csv` | Mixed-effects model comparison (random intercept vs random slopes) |
+| `outputs/tables/val_random_slopes_coefficients.csv` | Random-slopes model coefficients (manuscript Table 2) |
 | `outputs/tables/persistent_low_performers.csv` | 28 persistently low-performing facilities |
-| `outputs/tables/lisa_clusters.csv` | LISA cluster assignments |
-| `outputs/tables/quality_desert_sa3s.csv` | Quality desert SA3 areas |
-| `outputs/maps/overall_star_rating_map.png` | Choropleth map of mean ratings |
-| `outputs/maps/lisa_cluster_map.png` | LISA cluster map |
-| `outputs/figures/quality_trajectories.png` | Rating trajectories by provider type |
-| `outputs/maps/quality_desert_map.png` | Quality desert map |
+| `outputs/tables/val_lisa_clusters.csv` | LISA cluster assignments |
+| `outputs/tables/quality_desert_sa3_list.csv` | Quality desert SA3 areas |
+| `outputs/tables/table1_characteristics.csv` | Table 1 (facility characteristics by provider type) |
+| `outputs/tables/table2_mixed_model.csv` | Table 2 (random-slopes mixed model) |
+| `outputs/tables/table3_international_comparison.csv` | Table 3 (US CMS Five-Star comparison) |
+| `outputs/maps/map_overall_star_rating.png` | Choropleth map of mean ratings |
+| `outputs/maps/map_lisa_clusters.png` | LISA cluster map |
+| `outputs/figures/trajectory_by_provider_type.png` | Overall-rating trajectories by provider type |
+| `outputs/maps/map_quality_deserts.png` | Quality desert map |
 
 ## Notes
 
@@ -167,7 +180,7 @@ After running all scripts, the following key outputs are produced:
 
 If you use this code, please cite the manuscript:
 
-> Farquhar H. Geographic equity in aged care quality: spatial and longitudinal analysis of Australia's Star Ratings system. *Preprint (Authorea)*. https://doi.org/10.22541/au.177490698.83341858/v1. Manuscript under consideration at a peer-reviewed journal.
+> Farquhar H. Geographic equity in residential aged care quality: spatial and longitudinal analysis of Australia's Star Ratings system. *Preprint (Authorea)*. https://doi.org/10.22541/au.177490698.83341858/v1. Manuscript under consideration at a peer-reviewed journal.
 
 ## License
 

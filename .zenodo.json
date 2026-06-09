@@ -1,0 +1,21 @@
+{
+  "title": "Replication Code: Geographic Equity in Residential Aged Care Quality: Spatial and Longitudinal Analysis of Australia's Star Ratings System",
+  "upload_type": "software",
+  "description": "R analysis code to replicate all spatial, longitudinal, and equity analyses in the manuscript on geographic equity in Australian residential aged care quality, using the publicly available Star Ratings system (May 2023 to October 2025).",
+  "creators": [
+    {
+      "name": "Farquhar, Hayden",
+      "orcid": "0009-0002-6226-440X",
+      "affiliation": "Independent Researcher"
+    }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "aged care",
+    "Star Ratings",
+    "quality measurement",
+    "spatial analysis",
+    "health equity",
+    "Australia"
+  ]
+}

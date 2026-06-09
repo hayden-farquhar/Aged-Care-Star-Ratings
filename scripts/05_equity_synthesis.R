@@ -323,12 +323,15 @@ save_map(map_deserts, file.path(dir_maps, "map_quality_deserts.png"),
 message("  Saved: map_quality_deserts.png")
 
 # --- 5c: Quality deserts with IRSD disadvantage overlay ---
+# Disadvantage shading restricted to the most disadvantaged IRSD quintile (Q1)
+# rather than the bottom two quintiles, so the shaded area reflects the most
+# disadvantaged 20% of areas and does not over-cover the map.
 shp_desert_overlay <- shp_desert %>%
   mutate(
     desert_x_disadvantage = case_when(
-      is_quality_desert & !is.na(irsd_quintile) & irsd_quintile <= 2 ~ "Desert + High Disadvantage",
+      is_quality_desert & !is.na(irsd_quintile) & irsd_quintile == 1 ~ "Desert + most-disadvantaged quintile",
       is_quality_desert ~ "Desert only",
-      !is.na(irsd_quintile) & irsd_quintile <= 2 ~ "High Disadvantage only",
+      !is.na(irsd_quintile) & irsd_quintile == 1 ~ "Most-disadvantaged quintile only",
       TRUE ~ "Neither"
     )
   )
@@ -338,13 +341,13 @@ map_overlay <- tm_shape(shp_desert_overlay) +
     fill = "desert_x_disadvantage",
     fill.scale = tm_scale_categorical(
       values = c(
-        "Desert + High Disadvantage" = "#d73027",
+        "Desert + most-disadvantaged quintile" = "#d73027",
         "Desert only" = "#fc8d59",
-        "High Disadvantage only" = "#4575b4",
+        "Most-disadvantaged quintile only" = "#4575b4",
         "Neither" = "#e0e0e0"
       ),
-      levels = c("Desert + High Disadvantage", "Desert only",
-                 "High Disadvantage only", "Neither")
+      levels = c("Desert + most-disadvantaged quintile", "Desert only",
+                 "Most-disadvantaged quintile only", "Neither")
     ),
     fill.legend = tm_legend(title = "Equity Classification")
   ) +
