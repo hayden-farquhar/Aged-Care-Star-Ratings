@@ -38,6 +38,7 @@ shp_with_data <- shp %>%
   filter(!is.na(n_facilities))
 
 tmap_mode("plot")
+legend_pos <- tm_pos_in("left", "bottom")  # legend inside frame (empty SW-ocean corner)
 
 save_map <- function(map, filename, ...) {
   tmap_save(map, filename = filename, device = ragg::agg_png, ...)
@@ -52,8 +53,8 @@ m1 <- tm_shape(shp, crs = 3577) +
           fill.scale = tm_scale_continuous(values = "viridis", midpoint = 3.5),
           fill.legend = tm_legend(title = "Mean Star Rating")) +
   tm_borders(col = "grey60", lwd = 0.3) +
-  tm_title(paste("Overall Star Rating by SA3 --", latest_label)) +
-  tm_layout(frame = FALSE)
+  tm_title(paste0("Overall Star Rating by SA3, ", latest_label)) +
+  tm_layout(frame = FALSE, legend.position = legend_pos, legend.frame = FALSE)
 save_map(m1, file.path(dir_maps, "map_overall_star_rating.png"), width = 10, height = 8, dpi = 300)
 
 # 2. Sub-category maps
@@ -72,8 +73,8 @@ for (sc in subcats) {
             fill.scale = tm_scale_continuous(values = "viridis", midpoint = 3.5),
             fill.legend = tm_legend(title = paste("Mean", sc$label))) +
     tm_borders(col = "grey60", lwd = 0.3) +
-    tm_title(paste(sc$label, "Rating by SA3 --", latest_label)) +
-    tm_layout(frame = FALSE)
+    tm_title(paste0(sc$label, " Rating by SA3, ", latest_label)) +
+    tm_layout(frame = FALSE, legend.position = legend_pos, legend.frame = FALSE)
   save_map(m, file.path(dir_maps, paste0("map_", sc$fname, "-rating.png")), width = 10, height = 8, dpi = 300)
 }
 
@@ -87,7 +88,7 @@ m_irsd <- tm_shape(shp, crs = 3577) +
           fill.legend = tm_legend(title = "IRSD Quintile\n(1=Most Disadvantaged)")) +
   tm_borders(col = "grey60", lwd = 0.3) +
   tm_title("SEIFA IRSD Quintile by SA3") +
-  tm_layout(frame = FALSE)
+  tm_layout(frame = FALSE, legend.position = legend_pos, legend.frame = FALSE)
 save_map(m_irsd, file.path(dir_maps, "map_irsd_quintile.png"), width = 10, height = 8, dpi = 300)
 
 # 4. Facility density
@@ -102,8 +103,8 @@ m_den <- tm_shape(shp, crs = 3577) +
           fill.scale = tm_scale_continuous(values = "brewer.yl_gn_bu"),
           fill.legend = tm_legend(title = "Facilities per\n1,000 pop 65+")) +
   tm_borders(col = "grey60", lwd = 0.3) +
-  tm_title(paste("Aged Care Facility Density --", latest_label)) +
-  tm_layout(frame = FALSE)
+  tm_title(paste0("Aged Care Facility Density, ", latest_label)) +
+  tm_layout(frame = FALSE, legend.position = legend_pos, legend.frame = FALSE)
 save_map(m_den, file.path(dir_maps, "map_facility_density.png"), width = 10, height = 8, dpi = 300)
 
 # 5. For-profit share
@@ -116,8 +117,8 @@ m_fp <- tm_shape(shp, crs = 3577) +
           fill.scale = tm_scale_continuous(values = "brewer.or_rd"),
           fill.legend = tm_legend(title = "% For-profit")) +
   tm_borders(col = "grey60", lwd = 0.3) +
-  tm_title(paste("For-profit Facility Share by SA3 --", latest_label)) +
-  tm_layout(frame = FALSE)
+  tm_title(paste0("For-profit Facility Share by SA3, ", latest_label)) +
+  tm_layout(frame = FALSE, legend.position = legend_pos, legend.frame = FALSE)
 save_map(m_fp, file.path(dir_maps, "map_pct_for_profit.png"), width = 10, height = 8, dpi = 300)
 
 # 6. GWR maps
@@ -150,7 +151,7 @@ m_gwr <- tm_shape(shp, crs = 3577) +
           fill.legend = tm_legend(title = "Local IRSD\nCoefficient")) +
   tm_borders(col = "grey60", lwd = 0.3) +
   tm_title("GWR: Local IRSD Effect on Star Rating") +
-  tm_layout(frame = FALSE)
+  tm_layout(frame = FALSE, legend.position = legend_pos, legend.frame = FALSE)
 save_map(m_gwr, file.path(dir_maps, "map_gwr_irsd_coefficients.png"), width = 10, height = 8, dpi = 300)
 
 m_r2 <- tm_shape(shp, crs = 3577) +
@@ -161,7 +162,7 @@ m_r2 <- tm_shape(shp, crs = 3577) +
           fill.legend = tm_legend(title = "Local R-squared")) +
   tm_borders(col = "grey60", lwd = 0.3) +
   tm_title("GWR: Local R-squared Across Australia") +
-  tm_layout(frame = FALSE)
+  tm_layout(frame = FALSE, legend.position = legend_pos, legend.frame = FALSE)
 save_map(m_r2, file.path(dir_maps, "map_gwr_local_r2.png"), width = 10, height = 8, dpi = 300)
 
 message("\nAll maps saved.")
